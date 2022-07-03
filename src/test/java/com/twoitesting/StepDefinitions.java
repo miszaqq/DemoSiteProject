@@ -8,12 +8,10 @@ import io.cucumber.java.en.When;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.hamcrest.MatcherAssert;
-import org.junit.jupiter.api.Assertions.*;
-import org.junit.platform.engine.support.discovery.SelectorResolver;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static java.lang.Integer.valueOf;
 import static org.codehaus.groovy.runtime.DefaultGroovyMethods.round;
 import static org.hamcrest.Matchers.*;
 
@@ -196,8 +194,22 @@ public class StepDefinitions {
         driver.findElement(By.cssSelector("[aria-label='Remove this item']")).click();
         Thread.sleep(1500);
 
+    }
+
+    @Given("I am on home page and I am logged in")
+    public void i_am_on_home_page_and_i_am_logged_in() {
 
 
 
+    }
+    @When("User log out")
+    public void user_log_out() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
+    @Then("User is no longer logged in")
+    public void user_is_no_longer_logged_in() {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 }

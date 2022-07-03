@@ -35,10 +35,10 @@ Feature: Demo Site e-commerce
       | 30   | Sunglasses |
       | 34   | Hoodie     |
 
-#
-#
-#  Scenario: Log out
-#    Given I am on cart page
-#    When I log out
-#    Then User is no longer logged in
+
+
+  Scenario: Log out
+    Given I am on home page and I am logged in
+    When User log out
+    Then User is no longer logged in
 
