@@ -57,10 +57,11 @@ public class StepDefinitions {
     //Scenario #2
 
     @Given("I am logged into my account")
-    public void i_am_logged_into() {
+    public void i_am_logged_into() throws InterruptedException {
 
         driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a"))
                 .click();
+        Thread.sleep(1000);
         driver.findElement(By.cssSelector("input#username"))
                 .sendKeys("qehwgf+7cqeg1srwuez8@sharklasers.com");
         driver.findElement(By.cssSelector("input#password"))
@@ -112,7 +113,6 @@ public class StepDefinitions {
 
     @Given("I am on cart page with {string} added")
     public void i_am_on_cart_page_with_item_added(String itemID) throws InterruptedException {
-        i_am_logged_into();
         i_am_on_shop_page();
 
         String locat = ("[data-product_id='"+itemID+"']");
