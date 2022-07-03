@@ -2,7 +2,7 @@ Feature: Demo Site e-commerce
 
   Scenario: Login to ecommerce site
     Given I am on main page
-    And I go to My account
+    And I go to My account page
     When I input login details
     Then I am logged in to my account
 

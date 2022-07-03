@@ -19,30 +19,36 @@ public class StepDefinitions {
 
     WebDriver driver;
 
-    @Before
-    public void SetUp(){
+    @Before //setting Webdriver before each scenario
+    public void SetUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+
+            //open test website before each scenario
+        driver.get("https://www.edgewordstraining.co.uk/demo-site/");
     }
 
 
-    @After
+    @After //closing browser after each scenario, so next one start with fresh window
     public void TearDown(){
         driver.quit();
     }
 
+
     @Given("I am on main page")
     public void i_am_on_main_page() {
-
-
-        driver.get("https://www.edgewordstraining.co.uk/demo-site/");
+        String welcomeTo = driver.findElement(By.cssSelector("main#main")).getText();
+        MatcherAssert.assertThat(welcomeTo, containsString("Welcome to Edgewords e-commerce demo"));
     }
 
-    @When("I go to My account")
+    @When("I go to My account page")
     public void i_go_to_my_account() {
 
         driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a"))
                 .click();
+        String welcomeTo = driver.findElement(By.cssSelector("[id='post-7']")).getText();
+        MatcherAssert.assertThat(welcomeTo, containsString("Login"));
+
 
     }
     @When("I input login details")
@@ -61,8 +67,6 @@ public class StepDefinitions {
         String bodyText = driver.findElement(By.cssSelector("body")).getText();
         MatcherAssert.assertThat(bodyText, containsString("Hello qehwgf7cqeg1srwuez8"));
         MatcherAssert.assertThat(bodyText, containsString("Logout"));
-
-
     }
 
     //Scenario #2
@@ -70,7 +74,6 @@ public class StepDefinitions {
     @Given("I am logged into my account")
     public void i_am_logged_into() {
 
-        driver.get("https://www.edgewordstraining.co.uk/demo-site/");
         driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a"))
                 .click();
         driver.findElement(By.cssSelector("input#username"))
