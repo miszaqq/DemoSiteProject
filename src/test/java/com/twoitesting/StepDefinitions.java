@@ -13,7 +13,8 @@ import org.junit.platform.engine.support.discovery.SelectorResolver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.hamcrest.Matchers.containsString;
+import static java.lang.Integer.valueOf;
+import static org.hamcrest.Matchers.*;
 
 public class StepDefinitions {
 
@@ -61,7 +62,7 @@ public class StepDefinitions {
         driver.findElement(By.cssSelector("button[name='login']")).click();
     }
 
-    @Then("I am logged in to my account")
+    @Then("I should be logged in to my account")
     public void i_am_logged_in_to_my_account() {
 
         String bodyText = driver.findElement(By.cssSelector("body")).getText();
@@ -118,6 +119,80 @@ public class StepDefinitions {
         driver.findElement(By.cssSelector("[aria-label='Remove this item']")).click();
 
         Thread.sleep(2000);
+
+
+    }
+
+    //Scenario #3
+
+    @Given("I am on cart page with {string} added")
+    public void i_am_on_cart_page_with_item_added(String itemID) throws InterruptedException {
+        i_am_logged_into();
+        i_am_on_shop_page();
+
+        String locat = ("[data-product_id='"+itemID+"']");
+        WebElement add = driver.findElement(By.cssSelector(locat));
+        JavascriptExecutor j = (JavascriptExecutor) driver;
+        j.executeScript("arguments[0].click();", add);
+        Thread.sleep(1500);
+
+        driver.findElement(By.cssSelector("ul#site-header-cart  a[title='View your shopping cart']")).click();
+        Thread.sleep(2000);
+
+
+
+    }
+    @When("I add coupon {string}")
+    public void i_add_coupon(String string) throws InterruptedException {
+        driver.findElement(By.cssSelector("input#coupon_code")).sendKeys("Edgewords");
+        driver.findElement(By.cssSelector("button[name='apply_coupon']")).click();
+
+        Thread.sleep(2500);
+    }
+    @Then("15percent discount given")
+    public void discount_given() {
+        String discountAmount = driver.findElement(By.cssSelector(".cart-discount.coupon-edgewords > td > .amount.woocommerce-Price-amount")).getText();
+        String discountAmount2 = discountAmount.replace("£", "");
+        double discountAmount3 = Double.parseDouble(discountAmount2);
+
+        String subtotal = driver.findElement(By.cssSelector(".cart-subtotal > td > .amount.woocommerce-Price-amount")).getText();
+        String subtotal2 = subtotal.replace("£", "");
+        double subtotal3 = Double.parseDouble(subtotal2);
+
+
+        double discountExpected = subtotal3 * 15/100;
+
+        MatcherAssert.assertThat(discountExpected, is(discountAmount3));
+    }
+    @Then("Total should be correct")
+    public void total_should_be_correct() throws InterruptedException {
+
+        String totalPounds = driver.findElement(By.cssSelector("strong > .amount.woocommerce-Price-amount")).getText();
+        String total = totalPounds.replace("£", "");
+        double totalAmount = Double.parseDouble(total);
+
+        String discountAmount = driver.findElement(By.cssSelector(".cart-discount.coupon-edgewords > td > .amount.woocommerce-Price-amount")).getText();
+        String discountAmount2 = discountAmount.replace("£", "");
+        double discountAmount3 = Double.parseDouble(discountAmount2);
+
+        String subtotal = driver.findElement(By.cssSelector(".cart-subtotal > td > .amount.woocommerce-Price-amount")).getText();
+        String subtotal2 = subtotal.replace("£", "");
+        double subtotal3 = Double.parseDouble(subtotal2);
+
+        Double expectedTotal = subtotal3 + 3.95 - discountAmount3;
+
+        MatcherAssert.assertThat(expectedTotal, is(totalAmount));
+
+            //Remove coupon, because it stays even if items are removed,
+            //Need to removed to check on different items
+        driver.findElement(By.cssSelector(".woocommerce-remove-coupon")).click();
+        Thread.sleep(1500);
+
+            //remove item from cart
+        driver.findElement(By.cssSelector("[aria-label='Remove this item']")).click();
+        Thread.sleep(1500);
+
+
 
 
     }

@@ -4,7 +4,7 @@ Feature: Demo Site e-commerce
     Given I am on main page
     And I go to My account page
     When I input login details
-    Then I am logged in to my account
+    Then I should be logged in to my account
 
 
   Scenario Outline: Enter shop and add item
@@ -15,17 +15,25 @@ Feature: Demo Site e-commerce
     Examples:
       | item number | item name  |
       | 27          | Beanie     |
-      | 28          | Belt       |
-      | 29          | Cap        |
-      | 34          | Hoodie     |
-      | 30          | Sunglasses |
+#      | 28          | Belt       |
+#      | 29          | Cap        |
+#      | 34          | Hoodie     |
+#      | 30          | Sunglasses |
 
 
-#  Scenario: Apply coupon and check total
-#    Given I am on cart page
-#    When  I add coupon 'Edgewords'
-#    Then  15% discount given
-#    And Total should be correct
+  Scenario Outline: Apply coupon and check total
+    Given I am on cart page with "<item>" added
+    When  I add coupon 'Edgewords'
+    Then  15percent discount given
+    And Total should be correct
+    Examples:
+    Examples:
+      | item | name   |
+      | 34   | Hoodie     |
+      | 27   | Beanie |
+      | 28   | Belt   |
+      | 29   | Cap        |
+      | 30   | Sunglasses |
 #
 #
 #  Scenario: Log out
