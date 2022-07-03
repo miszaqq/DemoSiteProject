@@ -15,10 +15,10 @@ Feature: Demo Site e-commerce
     Examples:
       | item number | item name |
       | 27          | Beanie    |
-#      | 28          | Belt       |
-#      | 29          | Cap        |
-#      | 34          | Hoodie     |
-#      | 30          | Sunglasses |
+      | 28          | Belt       |
+      | 29          | Cap        |
+      | 34          | Hoodie     |
+      | 30          | Sunglasses |
 
 
   Scenario Outline: Apply coupon and check total
