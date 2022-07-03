@@ -14,6 +14,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import static java.lang.Integer.valueOf;
+import static org.codehaus.groovy.runtime.DefaultGroovyMethods.round;
 import static org.hamcrest.Matchers.*;
 
 public class StepDefinitions {
@@ -160,7 +161,7 @@ public class StepDefinitions {
         double subtotal3 = Double.parseDouble(subtotal2);
 
 
-        double discountExpected = subtotal3 * 15/100;
+        double discountExpected = round(subtotal3 * 15/100, 2);
 
         MatcherAssert.assertThat(discountExpected, is(discountAmount3));
     }
@@ -179,11 +180,14 @@ public class StepDefinitions {
         String subtotal2 = subtotal.replace("£", "");
         double subtotal3 = Double.parseDouble(subtotal2);
 
-        Double expectedTotal = subtotal3 + 3.95 - discountAmount3;
+        double expectedTotal = round(subtotal3 + 3.95 - discountAmount3, 2);
 
+        System.out.println(expectedTotal + "vs." +totalAmount);
         MatcherAssert.assertThat(expectedTotal, is(totalAmount));
+        Thread.sleep(1000);
 
-            //Remove coupon, because it stays even if items are removed,
+
+        //Remove coupon, because it stays even if items are removed,
             //Need to removed to check on different items
         driver.findElement(By.cssSelector(".woocommerce-remove-coupon")).click();
         Thread.sleep(1500);
