@@ -29,11 +29,12 @@ Feature: Demo Site e-commerce
     Examples:
     Examples:
       | item | name   |
-      | 34   | Hoodie     |
       | 27   | Beanie |
       | 28   | Belt   |
       | 29   | Cap        |
       | 30   | Sunglasses |
+      | 34   | Hoodie     |
+
 #
 #
 #  Scenario: Log out
