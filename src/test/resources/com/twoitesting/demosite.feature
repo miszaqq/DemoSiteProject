@@ -15,10 +15,10 @@ Feature: Demo Site e-commerce
     Examples:
       | item number | item name  |
       | 27          | Beanie     |
-      | 28          | Belt       |
-      | 29          | Cap        |
-      | 34          | Hoodie     |
-      | 30          | Sunglasses |
+#      | 28          | Belt       |
+#      | 29          | Cap        |
+#      | 34          | Hoodie     |
+#      | 30          | Sunglasses |
 
   @EmptyCart
   Scenario Outline: Apply coupon and check total
@@ -33,16 +33,16 @@ Feature: Demo Site e-commerce
       | item | name               |
       | 27   | Beanie             |
       | 28   | Belt               |
-      | 29   | Cap                |
-      | 30   | Sunglasses         |
-      | 34   | Hoodie             |
-      | 38   | Vneck Tshirt       |
-      | 37   | Tshirt             |
-      | 36   | Polo               |
-      | 35   | Long Sleeve Tee    |
-      | 33   | Hoodie with Zipper |
-      | 32   | Hoodie with Pocket |
-      | 31   | Hoodie with Logo   |
+#      | 29   | Cap                |
+#      | 30   | Sunglasses         |
+#      | 34   | Hoodie             |
+#      | 38   | Vneck Tshirt       |
+#      | 37   | Tshirt             |
+#      | 36   | Polo               |
+#      | 35   | Long Sleeve Tee    |
+#      | 33   | Hoodie with Zipper |
+#      | 32   | Hoodie with Pocket |
+#      | 31   | Hoodie with Logo   |
 
   @BasicBefore
   Scenario: Log out
