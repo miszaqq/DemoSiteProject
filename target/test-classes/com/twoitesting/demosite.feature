@@ -1,12 +1,12 @@
 Feature: Demo Site e-commerce
-
+  @BasicBefore
   Scenario: Login to ecommerce site
     Given I am on main page
     And I go to My account page
     When I input login details
     Then I should be logged in to my account
 
-  @EmptyCart
+  @EmptyCart @Run
   Scenario Outline: Enter shop and add item
     Given I am logged into my account
     And I am on shop page
@@ -15,10 +15,10 @@ Feature: Demo Site e-commerce
     Examples:
       | item number | item name  |
       | 27          | Beanie     |
-#      | 28          | Belt       |
-#      | 29          | Cap        |
-#      | 34          | Hoodie     |
-#      | 30          | Sunglasses |
+      | 28          | Belt       |
+      | 29          | Cap        |
+      | 34          | Hoodie     |
+      | 30          | Sunglasses |
 
   @EmptyCart
   Scenario Outline: Apply coupon and check total
@@ -44,7 +44,7 @@ Feature: Demo Site e-commerce
       | 32   | Hoodie with Pocket |
       | 31   | Hoodie with Logo   |
 
-
+  @BasicBefore
   Scenario: Log out
     Given I am on home page and I am logged in
     When User log out
