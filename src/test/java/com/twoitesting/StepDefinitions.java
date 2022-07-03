@@ -9,6 +9,7 @@ import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.hamcrest.MatcherAssert;
 
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -199,17 +200,33 @@ public class StepDefinitions {
     @Given("I am on home page and I am logged in")
     public void i_am_on_home_page_and_i_am_logged_in() {
 
+        driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a")).click();
+            //Then check if user is logged in, should Logout and Log out be visible if logged in
 
+        String myAccount = driver.findElement(By.cssSelector("main")).getText();
+        Boolean amIloggedIn = myAccount.contains("Logout");
 
+        if (amIloggedIn) {
+            //Do nothing, proceed to next step to logout
+
+        }
+        else {
+            //If FALSE (not loggedin), then login user, to allow checking Logout procedure
+            driver.findElement(By.cssSelector("input#username"))
+                    .sendKeys("qehwgf+7cqeg1srwuez8@sharklasers.com");
+            driver.findElement(By.cssSelector("input#password"))
+                    .sendKeys("ABCD1234abcd!!");
+            driver.findElement(By.cssSelector("button[name='login']")).click();
+        }
     }
     @When("User log out")
     public void user_log_out() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver.findElement(By.cssSelector(".woocommerce-MyAccount-navigation-link--customer-logout [href]")).click();
     }
     @Then("User is no longer logged in")
     public void user_is_no_longer_logged_in() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        String myAccount = driver.findElement(By.cssSelector("main")).getText();
+        MatcherAssert.assertThat(myAccount, containsString("Register"));
+
     }
 }

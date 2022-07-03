@@ -13,8 +13,8 @@ Feature: Demo Site e-commerce
     When I add item "<item number>" to cart
     Then Item "<item name>" is added to cart
     Examples:
-      | item number | item name  |
-      | 27          | Beanie     |
+      | item number | item name |
+      | 27          | Beanie    |
 #      | 28          | Belt       |
 #      | 29          | Cap        |
 #      | 34          | Hoodie     |
@@ -28,13 +28,19 @@ Feature: Demo Site e-commerce
     And Total should be correct
     Examples:
     Examples:
-      | item | name   |
-      | 27   | Beanie |
-      | 28   | Belt   |
-      | 29   | Cap        |
-      | 30   | Sunglasses |
-      | 34   | Hoodie     |
-
+      | item | name               |
+      | 27   | Beanie             |
+      | 28   | Belt               |
+      | 29   | Cap                |
+      | 30   | Sunglasses         |
+      | 34   | Hoodie             |
+      | 38   | Vneck Tshirt       |
+      | 37   | Tshirt             |
+      | 36   | Polo               |
+      | 35   | Long Sleeve Tee    |
+      | 33   | Hoodie with Zipper |
+      | 32   | Hoodie with Pocket |
+      | 31   | Hoodie with Logo   |
 
 
   Scenario: Log out
