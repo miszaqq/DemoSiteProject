@@ -1,5 +1,7 @@
 package com.twoitesting;
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,10 +19,21 @@ public class StepDefinitions {
 
     WebDriver driver;
 
-    @Given("I am on main page")
-    public void i_am_on_main_page() {
+    @Before
+    public void SetUp(){
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+    }
+
+
+    @After
+    public void TearDown(){
+        driver.quit();
+    }
+
+    @Given("I am on main page")
+    public void i_am_on_main_page() {
+
 
         driver.get("https://www.edgewordstraining.co.uk/demo-site/");
     }
@@ -49,15 +62,13 @@ public class StepDefinitions {
         MatcherAssert.assertThat(bodyText, containsString("Hello qehwgf7cqeg1srwuez8"));
         MatcherAssert.assertThat(bodyText, containsString("Logout"));
 
-        driver.quit();
+
     }
 
     //Scenario #2
 
     @Given("I am logged into my account")
     public void i_am_logged_into() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
 
         driver.get("https://www.edgewordstraining.co.uk/demo-site/");
         driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a"))
@@ -104,7 +115,7 @@ public class StepDefinitions {
         driver.findElement(By.cssSelector("[aria-label='Remove this item']")).click();
 
         Thread.sleep(2000);
-        driver.quit();
+
 
     }
 }
