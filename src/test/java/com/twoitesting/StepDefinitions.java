@@ -13,27 +13,11 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static com.twoitesting.Utils.Hooks.driver;
 import static org.codehaus.groovy.runtime.DefaultGroovyMethods.round;
 import static org.hamcrest.Matchers.*;
-
 public class StepDefinitions {
 
-    WebDriver driver;
-
-    @Before //setting Webdriver before each scenario
-    public void SetUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-
-            //open test website before each scenario
-        driver.get("https://www.edgewordstraining.co.uk/demo-site/");
-    }
-
-
-    @After //closing browser after each scenario, so next one start with fresh window
-    public void TearDown(){
-        driver.quit();
-    }
 
 
     @Given("I am on main page")
@@ -99,11 +83,12 @@ public class StepDefinitions {
 
     }
     @When("I add item {string} to cart")
-    public void i_add_item_to_cart(String itemNumber) {
+    public void i_add_item_to_cart(String itemNumber) throws InterruptedException {
         String locat = ("[data-product_id='"+itemNumber+"']");
         WebElement add = driver.findElement(By.cssSelector(locat));
         JavascriptExecutor j = (JavascriptExecutor) driver;
         j.executeScript("arguments[0].click();", add);
+        Thread.sleep(500);
 
     }
     @Then("Item {string} is added to cart")
