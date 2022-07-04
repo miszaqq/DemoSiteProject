@@ -29,7 +29,6 @@ Feature: Demo Site e-commerce
     Then  15percent discount given
     And Total should be correct
     Examples:
-    Examples:
       | item | name               |
       | 27   | Beanie             |
       | 28   | Belt               |

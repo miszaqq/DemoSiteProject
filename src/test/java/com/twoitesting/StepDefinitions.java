@@ -132,7 +132,7 @@ public class StepDefinitions {
         driver.findElement(By.cssSelector("input#coupon_code")).sendKeys("Edgewords");
         driver.findElement(By.cssSelector("button[name='apply_coupon']")).click();
 
-        Thread.sleep(2500);
+        Thread.sleep(1500);
     }
     @Then("15percent discount given")
     public void discount_given() {
@@ -165,8 +165,8 @@ public class StepDefinitions {
         double subtotal3 = Double.parseDouble(subtotal2);
 
         double expectedTotal = round(subtotal3 + 3.95 - discountAmount3, 2);
-
-        System.out.println(expectedTotal + "vs." +totalAmount);
+            //Line below used to debug and find why it didn't pass
+            //System.out.println(expectedTotal + "vs." +totalAmount);
         MatcherAssert.assertThat(expectedTotal, is(totalAmount));
         Thread.sleep(1000);
 

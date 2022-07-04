@@ -33,7 +33,7 @@ public class Hooks {
         driver.get("https://www.edgewordstraining.co.uk/demo-site/");
         driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a")).click();
             //Then check if user is logged in, should Logout and Log out be visible if logged in
-
+        Thread.sleep(500);
         String myAccount = driver.findElement(By.cssSelector("main")).getText();
         Boolean amIloggedIn = myAccount.contains("Logout");
 
