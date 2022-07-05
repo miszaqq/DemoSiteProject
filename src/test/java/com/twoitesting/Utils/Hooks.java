@@ -8,6 +8,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Hooks {
 
@@ -15,8 +16,11 @@ public class Hooks {
 
     @Before ("@BasicBefore")//setting Webdriver before each scenario
     public void SetUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        //WebDriverManager.chromedriver().setup();
+        //driver = new ChromeDriver();
+
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
 
         //open test website before each scenario
         driver.get("https://www.edgewordstraining.co.uk/demo-site/");
@@ -27,8 +31,11 @@ public class Hooks {
     public void SetUpEmptyCart() throws InterruptedException {
             //@Before@EmptyCart makes sure that the cart is empty and voucher isn't applied
             //Otherwise it causes problems while checking for item in cart, or when using voucher
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+       // WebDriverManager.chromedriver().setup();
+        //driver = new ChromeDriver();
+
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
 
         driver.get("https://www.edgewordstraining.co.uk/demo-site/");
         driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a")).click();
