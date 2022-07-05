@@ -18,7 +18,7 @@ public class Hooks {
     public void SetUp() {
         //WebDriverManager.chromedriver().setup();
         //driver = new ChromeDriver();
-
+        //
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
 
