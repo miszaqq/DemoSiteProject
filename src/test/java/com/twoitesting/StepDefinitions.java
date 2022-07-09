@@ -1,24 +1,26 @@
 package com.twoitesting;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.hamcrest.MatcherAssert;
 
-import org.junit.Assert;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 
+import com.twoitesting.POMPages.*;
 import static com.twoitesting.Utils.Hooks.driver;
 import static org.codehaus.groovy.runtime.DefaultGroovyMethods.round;
 import static org.hamcrest.Matchers.*;
 public class StepDefinitions {
 
 
+    @Given("I go to shop page")
+    public void I_Go_to_shop_page() throws InterruptedException {
+        WelcomePage home = new WelcomePage(driver);
+        home.goToShop();
+        Thread.sleep(2000);
+    }
 
     @Given("I am on main page")
     public void i_am_on_main_page() {

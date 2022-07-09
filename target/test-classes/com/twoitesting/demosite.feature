@@ -1,4 +1,9 @@
 Feature: Demo Site e-commerce
+
+  @BasicBefore
+  Scenario:
+    Given I go to shop page
+
   @BasicBefore
   Scenario: Login to ecommerce site
     Given I am on main page
