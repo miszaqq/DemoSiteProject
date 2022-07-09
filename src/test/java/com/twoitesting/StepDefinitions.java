@@ -17,9 +17,11 @@ public class StepDefinitions {
 
     @Given("I go to shop page")
     public void I_Go_to_shop_page() throws InterruptedException {
-        WelcomePage home = new WelcomePage(driver);
-        home.goToShop();
-        Thread.sleep(2000);
+        WelcomePage homePage = new WelcomePage(driver);
+        homePage.goToShop();
+        Thread.sleep(1000);
+        homePage.goToCart();
+        Thread.sleep(1000);
     }
 
     @Given("I am on main page")

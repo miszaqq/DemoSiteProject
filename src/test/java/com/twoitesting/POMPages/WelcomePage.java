@@ -23,17 +23,16 @@ public class WelcomePage {
     private WebElement mainMenuCart;
 
     @FindBy(css = ".menu-item.menu-item-45.menu-item-object-page.menu-item-type-post_type > a")
-    WebElement mainMenuCheckout;
+    private WebElement mainMenuCheckout;
 
     @FindBy(css = ".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a")
-    WebElement mainMenuMyaccount;
+    private WebElement mainMenuMyaccount;
 
     //Service Methods
 
         //From Welcome Page go to Shop Page
     public void goToShop() throws InterruptedException {
         mainMenuShop.click();
-        Thread.sleep(3000);
     }
 
         //From Welcome Page go to Cart Page
@@ -46,5 +45,9 @@ public class WelcomePage {
         mainMenuCheckout.click();
     }
 
+        //From Welcome Page go to Myaccount Page
+    public void goToMyaccount(){
+        mainMenuMyaccount.click();
+    }
 
 }
