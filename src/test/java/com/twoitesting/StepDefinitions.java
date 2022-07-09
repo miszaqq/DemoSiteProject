@@ -20,9 +20,22 @@ public class StepDefinitions {
         WelcomePage homePage = new WelcomePage(driver);
         homePage.goToShop();
         Thread.sleep(1000);
-        homePage.goToCart();
-        Thread.sleep(1000);
+
     }
+
+    @When("Add item X {string} to cart")
+    public void addItemXToCart(String productID) throws InterruptedException {
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.addProductXX(productID);
+        Thread.sleep(1500);
+
+    }
+
+
+
+
+
+
 
     @Given("I am on main page")
     public void i_am_on_main_page() {
@@ -218,4 +231,6 @@ public class StepDefinitions {
         MatcherAssert.assertThat(myAccount, containsString("Register"));
 
     }
+
+
 }

@@ -13,9 +13,8 @@ public class WelcomePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    //Locators that will be reused later
 
-        //Takes you to Shop using shop link in top menu (css)
+        //Locators that will be reused later
     @FindBy(css = ".menu-item.menu-item-43.menu-item-object-page.menu-item-type-post_type > a")
     private WebElement mainMenuShop;
 

@@ -1,8 +1,17 @@
 Feature: Demo Site e-commerce
 
   @BasicBefore
-  Scenario:
+  Scenario Outline:
     Given I go to shop page
+    When Add item X "<xx>" to cart
+    Examples:
+      | xx | item name  |
+      | 27          | Beanie     |
+      | 28          | Belt       |
+      | 29          | Cap        |
+      | 34          | Hoodie     |
+      | 30          | Sunglasses |
+
 
   @BasicBefore
   Scenario: Login to ecommerce site
