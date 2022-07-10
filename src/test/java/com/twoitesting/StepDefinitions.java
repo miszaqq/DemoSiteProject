@@ -34,8 +34,8 @@ public class StepDefinitions {
     @Then("Item {string} is added")
     public void itemNAMEIsAdded(String productName) {
         CartPage cartPage = new CartPage(driver);
-        WelcomePage homePageManu = new WelcomePage(driver);
-        homePageManu.goToCart();
+        WelcomePage homePageMenu = new WelcomePage(driver);
+        homePageMenu.goToCart();
 
         String cartPageBody = cartPage.getTextOfCart();
         MatcherAssert.assertThat(cartPageBody, containsString(productName));
@@ -49,6 +49,7 @@ public class StepDefinitions {
 
     @Given("I am on main page")
     public void i_am_on_main_page() {
+
         String welcomeTo = driver.findElement(By.cssSelector("main#main")).getText();
         MatcherAssert.assertThat(welcomeTo, containsString("Welcome to Edgewords e-commerce demo"));
     }
@@ -56,8 +57,9 @@ public class StepDefinitions {
     @When("I go to My account page")
     public void i_go_to_my_account() {
 
-        driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a"))
-                .click();
+        WelcomePage homePageMenu = new WelcomePage(driver);
+        homePageMenu.goToMyaccount();
+
         String welcomeTo = driver.findElement(By.cssSelector("[id='post-7']")).getText();
         MatcherAssert.assertThat(welcomeTo, containsString("Login"));
 
@@ -66,18 +68,15 @@ public class StepDefinitions {
     @When("I input login details")
     public void i_input_login_details() {
 
-        driver.findElement(By.cssSelector("input#username"))
-                .sendKeys("qehwgf+7cqeg1srwuez8@sharklasers.com");
-        driver.findElement(By.cssSelector("input#password"))
-                .sendKeys("ABCD1234abcd!!");
-        driver.findElement(By.cssSelector("button[name='login']")).click();
+       MyaccountPage onAccountPage = new MyaccountPage(driver);
+       onAccountPage.myAccountLogIn("qehwgf+7cqeg1srwuez8@sharklasers.com", "ABCD1234abcd!!");
     }
 
     @Then("I should be logged in to my account")
     public void i_am_logged_in_to_my_account() {
 
         String bodyText = driver.findElement(By.cssSelector("body")).getText();
-        MatcherAssert.assertThat(bodyText, containsString("Hello qehwgf7cqeg1srwuez8"));
+        //MatcherAssert.assertThat(bodyText, containsString("Hello qehwgf7cqeg1srwuez8"));
         MatcherAssert.assertThat(bodyText, containsString("Logout"));
     }
 
