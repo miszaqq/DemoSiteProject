@@ -25,5 +25,4 @@ public class ShopPage {
         j.executeScript("arguments[0].click();", addXX);
     }
 
-
 }

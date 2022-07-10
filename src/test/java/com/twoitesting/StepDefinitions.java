@@ -19,7 +19,7 @@ public class StepDefinitions {
     public void I_Go_to_shop_page() throws InterruptedException {
         WelcomePage homePage = new WelcomePage(driver);
         homePage.goToShop();
-        Thread.sleep(1000);
+        Thread.sleep(500);
 
     }
 
@@ -29,6 +29,16 @@ public class StepDefinitions {
         shopPage.addProductXX(productID);
         Thread.sleep(1500);
 
+    }
+
+    @Then("Item {string} is added")
+    public void itemNAMEIsAdded(String productName) {
+        CartPage cartPage = new CartPage(driver);
+        WelcomePage homePageManu = new WelcomePage(driver);
+        homePageManu.goToCart();
+
+        String cartPageBody = cartPage.getTextOfCart();
+        MatcherAssert.assertThat(cartPageBody, containsString(productName));
     }
 
 
@@ -231,6 +241,7 @@ public class StepDefinitions {
         MatcherAssert.assertThat(myAccount, containsString("Register"));
 
     }
+
 
 
 }

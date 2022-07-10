@@ -4,6 +4,7 @@ Feature: Demo Site e-commerce
   Scenario Outline:
     Given I go to shop page
     When Add item X "<xx>" to cart
+    Then Item "<item name>" is added
     Examples:
       | xx | item name  |
       | 27          | Beanie     |
