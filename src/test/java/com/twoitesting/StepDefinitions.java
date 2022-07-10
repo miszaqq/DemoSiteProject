@@ -70,6 +70,7 @@ public class StepDefinitions {
 
        MyaccountPage onAccountPage = new MyaccountPage(driver);
        onAccountPage.myAccountLogIn("qehwgf+7cqeg1srwuez8@sharklasers.com", "ABCD1234abcd!!");
+
     }
 
     @Then("I should be logged in to my account")

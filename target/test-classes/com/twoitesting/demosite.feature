@@ -1,18 +1,5 @@
 Feature: Demo Site e-commerce
 
-  @BasicBefore
-  Scenario Outline:
-    Given I go to shop page
-    When Add item X "<xx>" to cart
-    Then Item "<item name>" is added
-    Examples:
-      | xx | item name  |
-      | 27          | Beanie     |
-      | 28          | Belt       |
-      | 29          | Cap        |
-      | 34          | Hoodie     |
-      | 30          | Sunglasses |
-
 
   @BasicBefore
   Scenario: Login to ecommerce site
@@ -64,3 +51,23 @@ Feature: Demo Site e-commerce
     When User log out
     Then User is no longer logged in
 
+
+  @BasicBefore
+  Scenario Outline: This scenraio is just a practice to use POMPages Methods
+    Given I go to shop page
+    When Add item X "<xx>" to cart
+    Then Item "<item name>" is added
+    Examples:
+      | xx | item name  |
+      | 27   | Beanie             |
+      | 28   | Belt               |
+      | 29   | Cap                |
+      | 30   | Sunglasses         |
+      | 34   | Hoodie             |
+      | 38   | Vneck Tshirt       |
+      | 37   | Tshirt             |
+      | 36   | Polo               |
+      | 35   | Long Sleeve Tee    |
+      | 33   | Hoodie with Zipper |
+      | 32   | Hoodie with Pocket |
+      | 31   | Hoodie with Logo   |

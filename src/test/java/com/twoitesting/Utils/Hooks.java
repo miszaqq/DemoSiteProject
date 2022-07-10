@@ -18,11 +18,11 @@ public class Hooks {
     public void SetUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        //
-        //WebDriverManager.firefoxdriver().setup();
-        //driver = new FirefoxDriver();
 
-        //open test website before each scenario
+            //WebDriverManager.firefoxdriver().setup();
+            //driver = new FirefoxDriver();
+
+            //open test website before each scenario
         driver.get("https://www.edgewordstraining.co.uk/demo-site/");
     }
 
