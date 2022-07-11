@@ -16,11 +16,18 @@ Feature: Demo Site e-commerce
     Then Item "<item name>" is added to cart
     Examples:
       | item number | item name  |
-      | 27          | Beanie     |
-      | 28          | Belt       |
-      | 29          | Cap        |
-      | 34          | Hoodie     |
-      | 30          | Sunglasses |
+      | 27   | Beanie             |
+      | 28   | Belt               |
+      | 29   | Cap                |
+      | 30   | Sunglasses         |
+      | 34   | Hoodie             |
+      | 38   | Vneck Tshirt       |
+      | 37   | Tshirt             |
+      | 36   | Polo               |
+      | 35   | Long Sleeve Tee    |
+      | 33   | Hoodie with Zipper |
+      | 32   | Hoodie with Pocket |
+      | 31   | Hoodie with Logo   |
 
   @EmptyCart
   Scenario Outline: Apply coupon and check total
@@ -35,15 +42,15 @@ Feature: Demo Site e-commerce
       | 27   | Beanie             |
       | 28   | Belt               |
       | 29   | Cap                |
-      | 30   | Sunglasses         |
-      | 34   | Hoodie             |
-      | 38   | Vneck Tshirt       |
-      | 37   | Tshirt             |
-      | 36   | Polo               |
-      | 35   | Long Sleeve Tee    |
-      | 33   | Hoodie with Zipper |
-      | 32   | Hoodie with Pocket |
-      | 31   | Hoodie with Logo   |
+#      | 30   | Sunglasses         |
+#      | 34   | Hoodie             |
+#      | 38   | Vneck Tshirt       |
+#      | 37   | Tshirt             |
+#      | 36   | Polo               |
+#      | 35   | Long Sleeve Tee    |
+#      | 33   | Hoodie with Zipper |
+#      | 32   | Hoodie with Pocket |
+#      | 31   | Hoodie with Logo   |
 
   @BasicBefore
   Scenario: Log out
@@ -52,8 +59,12 @@ Feature: Demo Site e-commerce
     Then User is no longer logged in
 
 
+
+
+
+
   @BasicBefore
-  Scenario Outline: This scenario is just a practice to use POMPages Methods
+  Scenario Outline: This scenario is just a practice to use POMPages and Methods
     Given I go to shop page
     When Add item X "<xx>" to cart
     Then Item "<item name>" is added

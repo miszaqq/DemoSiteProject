@@ -59,15 +59,19 @@ public class Hooks {
         }
             //Navigate to SHOP
         driver.findElement(By.cssSelector(".menu-item.menu-item-43.menu-item-object-page.menu-item-type-post_type > a")).click();
-            //add 'Beanie' or any item to cart
+        Thread.sleep(1000);
+
+        //add 'Beanie' or any item to cart
         WebElement add = driver.findElement(By.cssSelector("[data-product_id='27']"));
         JavascriptExecutor j = (JavascriptExecutor) driver;
         j.executeScript("arguments[0].click();", add);
-        Thread.sleep(500);
+        Thread.sleep(1000);
+
             //Navigate to CART to check if voucher is applied
         driver.findElement(By.cssSelector(".menu-item.menu-item-44.menu-item-object-page.menu-item-type-post_type > a")).click();
+        Thread.sleep(1000);
 
-        String checkVoucher = driver.findElement(By.cssSelector(".calculated_shipping.cart_totals")).getText();
+        String checkVoucher = driver.findElement(By.cssSelector(".cart_totals")).getText();
 
         Boolean isVoucherApplied = checkVoucher.contains("Coupon:");
 
