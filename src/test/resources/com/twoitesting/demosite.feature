@@ -8,7 +8,7 @@ Feature: Demo Site e-commerce
     When I input login details
     Then I should be logged in to my account
 
-  @EmptyCart
+  @BasicBefore
   Scenario Outline: Enter shop and add item
     Given I am logged into my account
     And I am on shop page

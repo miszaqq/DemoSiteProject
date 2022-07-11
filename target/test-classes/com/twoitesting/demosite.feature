@@ -8,7 +8,7 @@ Feature: Demo Site e-commerce
     When I input login details
     Then I should be logged in to my account
 
-  @EmptyCart
+  @BasicBefore
   Scenario Outline: Enter shop and add item
     Given I am logged into my account
     And I am on shop page
@@ -53,7 +53,7 @@ Feature: Demo Site e-commerce
 
 
   @BasicBefore
-  Scenario Outline: This scenraio is just a practice to use POMPages Methods
+  Scenario Outline: This scenario is just a practice to use POMPages Methods
     Given I go to shop page
     When Add item X "<xx>" to cart
     Then Item "<item name>" is added

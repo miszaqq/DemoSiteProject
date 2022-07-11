@@ -15,38 +15,6 @@ import static org.hamcrest.Matchers.*;
 public class StepDefinitions {
 
 
-    @Given("I go to shop page")
-    public void I_Go_to_shop_page() throws InterruptedException {
-        WelcomePage homePage = new WelcomePage(driver);
-        homePage.goToShop();
-        Thread.sleep(500);
-
-    }
-
-    @When("Add item X {string} to cart")
-    public void addItemXToCart(String productID) throws InterruptedException {
-        ShopPage shopPage = new ShopPage(driver);
-        shopPage.addProductXX(productID);
-        Thread.sleep(1500);
-
-    }
-
-    @Then("Item {string} is added")
-    public void itemNAMEIsAdded(String productName) {
-        CartPage cartPage = new CartPage(driver);
-        WelcomePage homePageMenu = new WelcomePage(driver);
-        homePageMenu.goToCart();
-
-        String cartPageBody = cartPage.getTextOfCart();
-        MatcherAssert.assertThat(cartPageBody, containsString(productName));
-    }
-
-
-
-
-
-
-
     @Given("I am on main page")
     public void i_am_on_main_page() {
 
@@ -86,14 +54,12 @@ public class StepDefinitions {
     @Given("I am logged into my account")
     public void i_am_logged_into() throws InterruptedException {
 
-        driver.findElement(By.cssSelector(".menu-item.menu-item-46.menu-item-object-page.menu-item-type-post_type > a"))
-                .click();
-        Thread.sleep(1000);
-        driver.findElement(By.cssSelector("input#username"))
-                .sendKeys("qehwgf+7cqeg1srwuez8@sharklasers.com");
-        driver.findElement(By.cssSelector("input#password"))
-                .sendKeys("ABCD1234abcd!!");
-        driver.findElement(By.cssSelector("button[name='login']")).click();
+        WelcomePage homePageMenu = new WelcomePage(driver);
+        homePageMenu.goToMyaccount();
+
+        MyaccountPage onAccountPage = new MyaccountPage(driver);
+        onAccountPage.myAccountLogIn("qehwgf+7cqeg1srwuez8@sharklasers.com", "ABCD1234abcd!!");
+
         String bodyText = driver.findElement(By.cssSelector("body")).getText();
         MatcherAssert.assertThat(bodyText, containsString("Hello qehwgf7cqeg1srwuez8"));
         MatcherAssert.assertThat(bodyText, containsString("Logout"));
@@ -101,35 +67,37 @@ public class StepDefinitions {
     @Given("I am on shop page")
     public void i_am_on_shop_page() throws InterruptedException {
 
-        driver.findElement(By.cssSelector(".menu-item.menu-item-43.menu-item-object-page.menu-item-type-post_type > a"))
-                .click();
-        String shopMain = driver.findElement(By.cssSelector("main#main")).getText();
-        MatcherAssert.assertThat(shopMain, containsString("Shop"));
-        MatcherAssert.assertThat(shopMain, containsString("Sort by"));
+        WelcomePage homePageMenu = new WelcomePage(driver);
+        homePageMenu.goToShop();
+        Thread.sleep(500);
+
+        String shopPageBody = driver.findElement(By.cssSelector("main#main")).getText();
+        MatcherAssert.assertThat(shopPageBody, containsString("Shop"));
+        MatcherAssert.assertThat(shopPageBody, containsString("Sort by"));
         Thread.sleep(1000);
 
 
     }
     @When("I add item {string} to cart")
-    public void i_add_item_to_cart(String itemNumber) throws InterruptedException {
-        String locat = ("[data-product_id='"+itemNumber+"']");
-        WebElement add = driver.findElement(By.cssSelector(locat));
-        JavascriptExecutor j = (JavascriptExecutor) driver;
-        j.executeScript("arguments[0].click();", add);
-        Thread.sleep(500);
+    public void i_add_item_to_cart(String productID) throws InterruptedException {
+
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.addProductXX(productID);
+        Thread.sleep(1000);
 
     }
     @Then("Item {string} is added to cart")
     public void item_is_added_to_cart(String itemName) throws InterruptedException {
-        driver.findElement(By.cssSelector("ul#site-header-cart  a[title='View your shopping cart']")).click();
 
-        Thread.sleep(2000); // 2.5s sleep to allow cart page to fully load
+        WelcomePage homePageMenu = new WelcomePage(driver);
+        homePageMenu.goToCart();
 
-        String cartContent = driver.findElement(By.cssSelector("main"))
-                .getText();
-        MatcherAssert.assertThat(cartContent, containsString(itemName));
+        CartPage cartPage = new CartPage(driver);
+        String cartPageBody = cartPage.getTextOfCart();
 
-        driver.findElement(By.cssSelector("[aria-label='Remove this item']")).click();
+        MatcherAssert.assertThat(cartPageBody, containsString(itemName));
+
+        cartPage.removeItem();
 
         Thread.sleep(2000);
 
@@ -240,6 +208,33 @@ public class StepDefinitions {
         String myAccount = driver.findElement(By.cssSelector("main")).getText();
         MatcherAssert.assertThat(myAccount, containsString("Register"));
 
+    }
+
+
+    @Given("I go to shop page")
+    public void I_Go_to_shop_page() throws InterruptedException {
+        WelcomePage homePage = new WelcomePage(driver);
+        homePage.goToShop();
+        Thread.sleep(500);
+
+    }
+
+    @When("Add item X {string} to cart")
+    public void addItemXToCart(String productID) throws InterruptedException {
+        ShopPage shopPage = new ShopPage(driver);
+        shopPage.addProductXX(productID);
+        Thread.sleep(1500);
+
+    }
+
+    @Then("Item {string} is added")
+    public void itemNAMEIsAdded(String productName) {
+        CartPage cartPage = new CartPage(driver);
+        WelcomePage homePageMenu = new WelcomePage(driver);
+        homePageMenu.goToCart();
+
+        String cartPageBody = cartPage.getTextOfCart();
+        MatcherAssert.assertThat(cartPageBody, containsString(productName));
     }
 
 
